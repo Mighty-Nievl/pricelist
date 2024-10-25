@@ -1,25 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="shortcut icon" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Pricelist</title>
 </head>
+
 <body>
+    <div class="top"></div>
+    <div class="back-top">
+        <a href="#top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+    </div>
     <div id="app">
         <h1>Pricelist</h1>
-        <p>by Zalan Store</p>
-    
-        <details>
+        <p id="desc">by Zalan Store</p>
+
+        <details open>
             <summary>Stream Apps</summary>
-            <details>
+            <details name="stream" open>
                 <summary>Amazon Prime</summary>
-                <h4>Sharing</h4>
-                <p>1 hari 3k</p>
+                <article>
+                    <h5>Sharing</h5>
+                    <p>1 hari <b>3k</b></p>
+                    <p>3 hari <b>6K</b></p>
+                    <p>7 hari <b>9K</b></p>
+                    <p>1 bulan (45 user) <b>14K</b></p>
+                    <p>1 bulan (3 user) <b>18K</b></p>
+                    <p>1 bulan (2 user) <b>20K</b></p>
+                </article>
+                <article>
+                    <h5>PRIVATE</h5>
+                    <p>1 bulan <b>30K</b></p>
+                </article>
+            </details>
+            <details name="stream">
+                <summary>APPLE TV+</summary>
+                <article>
+                    <h5>SHARING</h5>
+                    <p>1 bulan <b>12K</b></p>
+                    <p>3 bulan <b>25K</b></p>
+                </article>
+                <article>
+                    <h5>PRIVATE</h5>
+                    <p>1 bulan <b>25K</b></p>
+                    <p>3 bulan <b>35K</b></p>
+                </article>
+                <article>
+                    <h5>GIFTCODE</h5>
+                    <p>23 bulan <b>25K</b></p>
+                </article>
             </details>
         </details>
     </div>
+
 </body>
+
 </html>
