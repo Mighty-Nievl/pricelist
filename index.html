@@ -80,13 +80,37 @@
             scroll-behavior: smooth;
         }
 
+        :root {
+            &:has(input[name="color-scheme"][value="light"]:checked) {
+                color-scheme: light;
+            }
+
+            &:has(input[name="color-scheme"][value="dark"]:checked) {
+                color-scheme: dark;
+            }
+        }
+
+        :root {
+            color-scheme: light dark;
+            --bg: light-dark(#f0f9f4, #2a2a2a);
+            --text: light-dark(#163e30, #f0f9f4);
+            --shdw: light-dark(#daf1e3, #1a1a1a);
+            --aaa: light-dark(#36936c, #1a4b3977);
+            --txa: light-dark(#eee, #f0f9f4);
+            --border: light-dark(#ddd, #11111199);
+        }
+
         body {
+            background-color: var(--bg);
+            color: var(--text);
+
             #app {
                 max-width: 450px;
-                height: 100vh;
+                height: 100%;
                 margin: auto;
                 padding: 1em;
-                box-shadow: 0 0 1em #ddd;
+                box-shadow: 0 0 1em var(--shdw);
+                border-inline: 1px solid var(--border);
                 font-family: "Mulish", serif;
                 font-weight: 600;
 
@@ -99,8 +123,12 @@
                     }
                 }
 
+                .details {
+                    margin-bottom: 1em;
+                }
+
                 details {
-                    border: 1px solid #ddd;
+                    border: 1px solid var(--border);
                     padding-block: 0.5em;
                     padding-left: 1em;
 
@@ -116,7 +144,7 @@
                         padding-bottom: 0.25em;
 
                         &:marker {
-                            color: #58af88;
+                            color: var(--bg);
                         }
                     }
 
@@ -124,18 +152,32 @@
                         padding-left: 1em;
                         padding-bottom: 0;
                         border-right: 0;
-                        background-color: #fafafa;
+                        background-color: var(--aaa);
                         padding-bottom: 0.25em;
+                        margin-bottom: .5em;
 
-                        article {
-                            padding-left: 1em;
-                            padding-bottom: 1em;
+                        &:hover {
+                            background-color: var(--bg);
+                        }
 
-                            ul {
-                                list-style: none;
-                                padding-left: -1em;
+                        &[open] {
+                            background-color: var(--bg);
+                            color: var(--text);
+                        }
+
+                        main {
+                            padding-right: 2em;
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-evenly;
+
+                            article {
+                                padding-left: 1em;
+                                padding-bottom: 1em;
+                                text-align: center;
                             }
                         }
+
                     }
                 }
             }
@@ -172,12 +214,39 @@
             }
         }
 
-        @layer back-top {
+        @layer widget {
+            #theme-toggle {
+                position: fixed;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1em;
+                flex-direction: column;
+                background-color: var(--aaa);
+                color: var(--txa);
+                padding: .5em;
+                bottom: 5em;
+                right: 2em;
+                border: 1px solid var(--border);
+                border-radius: .35em;
+                box-shadow: 0 0 10px var(--shdw);
+
+                label {
+                    cursor: pointer;
+                    display: block;
+                }
+
+                input {
+                    display: none;
+                }
+            }
+
             .back-top {
                 position: fixed;
                 bottom: 2em;
                 right: 2em;
-                background-color: #36936c;
+                background-color: var(--aaa);
+                color: var(--txa);
                 width: 2em;
                 height: 2em;
                 display: flex;
@@ -188,12 +257,22 @@
                 -moz-border-radius: 0.35em;
                 -ms-border-radius: 0.35em;
                 -o-border-radius: 0.35em;
+                border: 1px solid var(--border);
+                box-shadow: 0 0 10px var(--shdw);
 
                 a {
                     padding-top: 0.15em;
-                    color: #fff;
+                    color: var(--text);
                 }
             }
+        }
+
+        .details>* {
+            border-radius: 0.3em;
+            -webkit-border-radius: 0.3em;
+            -moz-border-radius: 0.3em;
+            -ms-border-radius: 0.3em;
+            -o-border-radius: 0.3em;
         }
 
         details>* {
@@ -202,14 +281,6 @@
             -moz-transition: all 0.3s linear;
             -ms-transition: all 0.3s linear;
             -o-transition: all 0.3s linear;
-        }
-
-        #app>* {
-            border-radius: 0.3em;
-            -webkit-border-radius: 0.3em;
-            -moz-border-radius: 0.3em;
-            -ms-border-radius: 0.3em;
-            -o-border-radius: 0.3em;
         }
     </style>
     <title>Pricelist</title>
@@ -222,46 +293,207 @@
             <i class="fas fa-angle-up"></i>
         </a>
     </div>
+    <div id="theme-toggle">
+        <label><input name="color-scheme" type="radio" value="light"><i class="fas fa-sun"></i></label>
+        <label><input name="color-scheme" type="radio" value="dark"><i class="fas fa-moon"></i></label>
+    </div>
+
     <div id="app">
         <h1>Pricelist</h1>
         <p id="desc">by Zalan Store</p>
 
-        <details open>
-            <summary>Stream Apps</summary>
-            <details name="stream" open>
-                <summary>Amazon Prime</summary>
-                <article>
-                    <h5>Sharing</h5>
-                    <p>1 hari <b>3k</b></p>
-                    <p>3 hari <b>6K</b></p>
-                    <p>7 hari <b>9K</b></p>
-                    <p>1 bulan (45 user) <b>14K</b></p>
-                    <p>1 bulan (3 user) <b>18K</b></p>
-                    <p>1 bulan (2 user) <b>20K</b></p>
-                </article>
-                <article>
-                    <h5>PRIVATE</h5>
-                    <p>1 bulan <b>30K</b></p>
-                </article>
+        <div class="details">
+            <details open>
+                <summary>Stream Apps</summary>
+                <details name="stream">
+                    <summary>Amazon Prime</summary>
+                    <main>
+                        <article>
+                            <h5>Sharing</h5>
+                            <p>1 hari <b>3k</b></p>
+                            <p>3 hari <b>6K</b></p>
+                            <p>7 hari <b>9K</b></p>
+                            <p>1 bulan (45 user) <b>14K</b></p>
+                            <p>1 bulan (3 user) <b>18K</b></p>
+                            <p>1 bulan (2 user) <b>20K</b></p>
+                        </article>
+                        <article>
+                            <h5>PRIVATE</h5>
+                            <p>1 bulan <b>30K</b></p>
+                        </article>
+                    </main>
+                </details>
+                <details name="stream">
+                    <summary>APPLE TV+</summary>
+                    <main>
+                        <article>
+                            <h5>SHARING</h5>
+                            <p>1 bulan <b>12K</b></p>
+                            <p>3 bulan <b>25K</b></p>
+                        </article>
+                        <article>
+                            <h5>PRIVATE</h5>
+                            <p>1 bulan <b>25K</b></p>
+                            <p>3 bulan <b>35K</b></p>
+                        </article>
+                        <article>
+                            <h5>GIFTCODE</h5>
+                            <p>23 bulan <b>25K</b></p>
+                        </article>
+                    </main>
+                </details>
+                <details name="stream">
+                    <summary>BSTATION</summary>
+                    <main>
+                        <article>
+                            <h5>SHARING</h5>
+                            <p>1 hari <b>2K</b></p>
+                            <p>3 hari <b>4K</b></p>
+                            <p>7 hari <b>6K</b></p>
+                            <p>1 bulan <b>12K</b></p>
+                            <p>3 bulan <b>20K</b></p>
+                            <p>1 tahun <b>30K</b></p>
+                        </article>
+                        <article>
+                            <h5>PRIVATE</h5>
+                            <p>1 bulan <b>37K</b></p>
+                        </article>
+                    </main>
+                </details>
+                <details name="stream">
+                    <summary>CATCHPLAY</summary>
+                    <main>
+                        <article>
+                            <h5>SHARING</h5>
+                            <p>1 bulan <b>12K</b></p>
+                            <p>1 tahun <b>35K</b></p>
+                        </article>
+                    </main>
+                </details>
+                <details name="stream">
+                    <summary>CRUNCHYROLL</summary>
+                    <main>
+                        <article>
+                            <h5>SHARING</h5>
+                            <p>1 bulan <b>20K</b></p>
+                            <p>1 tahun <b>34K</b></p>
+                        </article>
+                    </main>
+                </details>
+                <details name="stream">
+                    <summary>DISNEY+</summary>
+                    <main>
+                        <article>
+                            <h5>BASIC PLAN 3U</h5>
+                            <p>3U 1 hari <b>4K</b></p>
+                            <p>3U 3 hari <b>9K</b></p>
+                            <p>3U 5 hari <b>13K</b></p>
+                            <p>3U 7 hari <b>16K</b></p>
+                        </article>
+                        <article>
+                            <h5>Basic plan 1 Bulan</h5>
+                            <p>3U 1 bulan <b>30K</b></p>
+                            <p>2U 1 bulan <b>45K</b></p>
+                            <p>1 bulan private <b>90K</b></p>
+                        </article>
+                        <article>
+                            <h5>PREMIUM PLAN 6u</h5>
+                            <p>6U 1 hari <b>5K</b></p>
+                            <p>6U 3 hari <b>10K</b></p>
+                            <p>6U 5 hari <b>15K</b></p>
+                            <p>6U 7 hari <b>16K</b></p>
+                        </article>
+                        <article>
+                            <h5>premium plan 3u</h5>
+                            <p>3U 1 hari <b>8K</b></p>
+                            <p>3U 3 hari <b>12K</b></p>
+                            <p>3U 7 hari <b>22K</b></p>
+                        </article>
+                        <article>
+                            <h5>premium plan 1 bulan</h5>
+                            <p>6U 1 bulan <b>32K</b></p>
+                            <p>5U 1 bulan <b>40K</b></p>
+                            <p>3U 1 bulan <b>55K</b></p>
+                            <p>1 bulan private <b>150K</b></p>
+                        </article>
+                    </main>
+                </details>
+                <details name="stream" open>
+                    <summary>DRAKOR.ID</summary>
+                    <main>
+                        <article>
+                            <h5>SHARING</h5>
+                            <p>1 bulan <b>10K</b></p>
+                            <p>1 tahun (garansi 6 bulan) <b>25K</b></p>
+                        </article>
+                    </main>
+                </details>
             </details>
-            <details name="stream">
-                <summary>APPLE TV+</summary>
-                <article>
-                    <h5>SHARING</h5>
-                    <p>1 bulan <b>12K</b></p>
-                    <p>3 bulan <b>25K</b></p>
-                </article>
-                <article>
-                    <h5>PRIVATE</h5>
-                    <p>1 bulan <b>25K</b></p>
-                    <p>3 bulan <b>35K</b></p>
-                </article>
-                <article>
-                    <h5>GIFTCODE</h5>
-                    <p>23 bulan <b>25K</b></p>
-                </article>
+        </div>
+        <div class="details">
+            <details open>
+                <summary>Music Apps</summary>
+                <details name="music">
+                    <summary>Apple Music</summary>
+                    <main>
+                        <article>
+                            <h5>GIFT CODE</h5>
+                            <p>12 bulan <b>30K</b></p>
+                        </article>
+                        <article>
+                            <h5>IMESS</h5>
+                            <p>1 bulan <b>23K</b></p>
+                            <p>2 bulan <b>30K</b></p>
+                            <p>3 bulan <b>38K</b></p>
+                            <p>4 bulan <b>43K</b></p>
+                        </article>
+                    </main>
+                </details>
+                <details name="music">
+                    <summary>SPOTIFY</summary>
+                    <main>
+                        <article>
+                            <h5>INDPLAN REPLACE</h5>
+                            <p>1 bulan <b>20K</b></p>
+                            <p>2 bulan <b>30K</b></p>
+                            <p>3 bulan <b>40K</b></p>
+                        </article>
+                        <article>
+                            <h5>INDPLAN NO REPLACE</h5>
+                            <p>1 bulan <b>30K</b></p>
+                            <p>2 bulan <b>45K</b></p>
+                            <p>3 bulan <b>60K</b></p>
+                        </article>
+                        <article>
+                            <h5>FAMPLAN REPLACE</h5>
+                            <p>1 bulan <b>15K</b></p>
+                            <p>2 bulan <b>20K</b></p>
+                            <p>3 bulan <b>30K</b></p>
+                        </article>
+                        <article>
+                            <h5>FAMPLAN LEGAL PAID INDO</h5>
+                            <p>1 bulan <b>20K</b></p>
+                            <p>2 bulan <b>30K</b></p>
+                        </article>
+                    </main>
+                </details>
+                <details name="music">
+                    <summary>TIKTOK MUSIC</summary>
+                    <main>
+                        <article>
+                            <h5>FAMILY PLAN</h5>
+                            <p>1 bulan <b>12K</b></p>
+                            <p>2 bulan <b>20K</b></p>
+                            <p>3 bulan <b>25K</b></p>
+                        </article>
+                        <article>
+                            <h5>INDIVIDUAL PLAN</h5>
+                            <p>1 bulan <b>18K</b></p>
+                        </article>
+                    </main>
+                </details>
             </details>
-        </details>
+        </div>
     </div>
 
 </body>
