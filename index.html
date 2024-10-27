@@ -93,24 +93,28 @@
         :root {
             color-scheme: light dark;
             --bg: light-dark(#f0f9f4, #2a2a2a);
-            --text: light-dark(#163e30, #f0f9f4);
-            --shdw: light-dark(#daf1e3, #1a1a1a);
-            --aaa: light-dark(#36936c, #1a4b3977);
-            --txa: light-dark(#eee, #f0f9f4);
-            --border: light-dark(#ddd, #11111199);
+            --txt: light-dark(#163e30, #f0f9f4);
+            --shd: light-dark(#b8e2cbdd, #1a1a1a);
+            --bdr: light-dark(#ddd, #11111199);
+
+            --abg: light-dark(#257656, #1a4b3977);
+            --atx: light-dark(#eee, #eee);
+
+            --btx: light-dark(#257656, #57b087);
+            --bbg: light-dark(#daf1e3, #1a4b3977);
         }
 
         body {
             background-color: var(--bg);
-            color: var(--text);
+            color: var(--txt);
 
             #app {
-                max-width: 450px;
+                max-width: 500px;
                 height: 100%;
                 margin: auto;
                 padding: 1em;
-                box-shadow: 0 0 1em var(--shdw);
-                border-inline: 1px solid var(--border);
+                box-shadow: 0 0 1em var(--shd);
+                border-inline: 1px solid var(--bdr);
                 font-family: "Mulish", serif;
                 font-weight: 600;
 
@@ -123,12 +127,45 @@
                     }
                 }
 
+                nav {
+                    padding-block: .5em;
+                    padding-inline: 1em;
+                    border: 1px solid var(--bdr);
+                    margin-block: 1em;
+                    border-radius: .35em;
+                    background-color: var(--bbg);
+                    color: var(--txt);
+
+                    ul {
+                        display: flex;
+                        justify-content: center;
+                        gap: 1em;
+                        flex-direction: row;
+                        list-style: none;
+                        padding-left: 0;
+
+                        li {
+                            font-weight: 700;
+                            span {
+                                padding-left: 1em;
+                                color: var(--bdr);
+                            }
+
+                            &:last-child {
+                                span {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 .details {
                     margin-bottom: 1em;
                 }
 
                 details {
-                    border: 1px solid var(--border);
+                    border: 1px solid var(--bdr);
                     padding-block: 0.5em;
                     padding-left: 1em;
 
@@ -152,17 +189,19 @@
                         padding-left: 1em;
                         padding-bottom: 0;
                         border-right: 0;
-                        background-color: var(--aaa);
+                        background-color: var(--abg);
                         padding-bottom: 0.25em;
                         margin-bottom: .5em;
+                        color: var(--atx);
 
                         &:hover {
                             background-color: var(--bg);
+                            color: var(--txt);
                         }
 
                         &[open] {
                             background-color: var(--bg);
-                            color: var(--text);
+                            color: var(--txt);
                         }
 
                         main {
@@ -222,14 +261,14 @@
                 align-items: center;
                 gap: 1em;
                 flex-direction: column;
-                background-color: var(--aaa);
-                color: var(--txa);
+                background-color: var(--abg);
+                color: var(--atx);
                 padding: .5em;
                 bottom: 5em;
                 right: 2em;
-                border: 1px solid var(--border);
+                border: 1px solid var(--bdr);
                 border-radius: .35em;
-                box-shadow: 0 0 10px var(--shdw);
+                box-shadow: 0 0 10px var(--shd);
 
                 label {
                     cursor: pointer;
@@ -245,34 +284,33 @@
                 position: fixed;
                 bottom: 2em;
                 right: 2em;
-                background-color: var(--aaa);
-                color: var(--txa);
+                background-color: var(--abg);
                 width: 2em;
                 height: 2em;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 border-radius: 0.35em;
-                -webkit-border-radius: 0.35em;
-                -moz-border-radius: 0.35em;
-                -ms-border-radius: 0.35em;
-                -o-border-radius: 0.35em;
-                border: 1px solid var(--border);
-                box-shadow: 0 0 10px var(--shdw);
+                -webkit-bdr-radius: 0.35em;
+                -moz-bdr-radius: 0.35em;
+                -ms-bdr-radius: 0.35em;
+                -o-bdr-radius: 0.35em;
+                border: 1px solid var(--bdr);
+                box-shadow: 0 0 10px var(--shd);
 
                 a {
                     padding-top: 0.15em;
-                    color: var(--text);
+                    color: var(--atx);
                 }
             }
         }
 
         .details>* {
             border-radius: 0.3em;
-            -webkit-border-radius: 0.3em;
-            -moz-border-radius: 0.3em;
-            -ms-border-radius: 0.3em;
-            -o-border-radius: 0.3em;
+            -webkit-bdr-radius: 0.3em;
+            -moz-bdr-radius: 0.3em;
+            -ms-bdr-radius: 0.3em;
+            -o-bdr-radius: 0.3em;
         }
 
         details>* {
@@ -281,6 +319,11 @@
             -moz-transition: all 0.3s linear;
             -ms-transition: all 0.3s linear;
             -o-transition: all 0.3s linear;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--btx);
         }
     </style>
     <title>Pricelist</title>
@@ -298,9 +341,21 @@
         <label><input name="color-scheme" type="radio" value="dark"><i class="fas fa-moon"></i></label>
     </div>
 
+
     <div id="app">
         <h1>Pricelist</h1>
         <p id="desc">by Zalan Store</p>
+
+        <nav>
+            <ul>
+                <li>Apps <span class="pipe">|</span></li>
+                <li>
+                    <a href="#">
+                        Games
+                    </a><span class="pipe">|</span>
+                </li>
+            </ul>
+        </nav>
 
         <div class="details">
             <details>
