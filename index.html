@@ -1,18 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheet.css">
-    <link rel="shortcut icon" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Pricelist - Zalan Store</title>
     <style>
         @layer css-reset {
 
@@ -76,17 +73,11 @@
             }
         }
 
-        html {
-            scroll-behavior: smooth;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-
-            &::-webkit-scrollbar {
-                display: none;
-            }
+        * {
+            transition: all .3s;
         }
 
-        :root {
+        /* :root {
             &:has(input[name="color-scheme"][value="light"]:checked) {
                 color-scheme: light;
             }
@@ -94,282 +85,272 @@
             &:has(input[name="color-scheme"][value="dark"]:checked) {
                 color-scheme: dark;
             }
-        }
+        } */
 
-        :root {
-            color-scheme: light dark;
-            --bg: light-dark(#f0f9f4, #2a2a2a);
-            --txt: light-dark(#163e30, #f0f9f4);
-            --shd: light-dark(#b8e2cbdd, #1a1a1a);
-            --bdr: light-dark(#ddd, #11111199);
+        html {
+            -ms-overflow-style: none;
+            /* Internet Explorer 10+ */
+            scrollbar-width: none;
+            /* Firefox */
 
-            --abg: light-dark(#257656, #1a4b3977);
-            --atx: light-dark(#eee, #eee);
-
-            --btx: light-dark(#257656, #57b087);
-            --bbg: light-dark(#daf1e3, #1a4b3977);
+            &::-webkit-scrollbar {
+                display: none;
+                /* Safari and Chrome */
+            }
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--txt);
+            background-color: #2a2a2a;
+            color: #dadada;
 
             #app {
-                /* min-height: 100.5vh; */
                 max-width: 500px;
                 margin: auto;
-                padding: 1em;
-                box-shadow: 0 0 1em var(--shd);
-                border-inline: 1px solid var(--bdr);
                 font-family: "Mulish", serif;
-                font-weight: 600;
+                font-weight: 500;
+                box-shadow: 0 0 10px #111;
+                padding-block: 1em;
+                min-height: 100vh;
+                border-radius: .35em;
 
-                p {
-                    &#desc {
-                        text-align: center;
-                        padding-bottom: 1em;
-                        font-size: smaller;
-                        font-weight: 700;
+                a {
+                    text-decoration: none;
+                    font-weight: 700;
+                    transition: all .3s;
+                    color: #36936c;
+                    transition: all .3s linear;
+
+                    &:hover {
+                        color: #dadada;
+                        transform: translateY(-1px);
                     }
                 }
 
-                nav {
-                    padding-block: .5em;
-                    padding-inline: 1em;
-                    border: 1px solid var(--bdr);
-                    margin-block: 1em;
-                    border-radius: .35em;
-                    background-color: var(--bbg);
-                    color: var(--txt);
+                .list-apps {
+
+                    .back-btn {
+                        width: 100%;
+                        transition: all .3s ease;
+
+                        a {
+                            line-height: 2.5em;
+                            display: block;
+                            background-color: #2a2a2a;
+                            cursor: pointer;
+                            border-bottom: 1px solid #222;
+                            padding-left: 1em;
+
+                            &:hover {
+                                background-color: #163e30;
+                                color: #fff;
+                            }
+                        }
+
+                        span.back {
+                            content: "«";
+                        }
+                    }
+                }
+
+                .homepage {
+                    padding: 2em;
+                }
+
+                h1 {
+                    text-align: center;
+                    padding-block: 1em;
+                }
+
+                .nav {
+                    display: flex;
+                    justify-content: center;
+                    gap: 1em;
+                    padding-block: 1em;
+                    border-block: #252525 3px solid;
+                }
+
+                .subnav {
+                    margin-top: 2em;
+                    padding-block: 2em;
+                    margin-inline: 2em;
 
                     ul {
                         display: flex;
-                        justify-content: center;
-                        gap: 1em;
-                        flex-direction: row;
+                        justify-content: space-evenly;
                         list-style: none;
-                        padding-left: 0;
+                        padding: 0;
 
                         li {
-                            font-weight: 700;
+                            display: block;
+                            line-height: 3;
+                            text-align: center;
+                            width: 10em;
+                            border: #444 1px solid;
+                            border-radius: .35em;
+                            transition: all .3s linear;
 
-                            span {
-                                padding-left: 1em;
-                                color: var(--bdr);
+                            &:hover {
+                                box-shadow:
+                                    1em 0 0px #163e30 inset,
+                                    -1em 0 0px #163e30 inset;
+                                border-color: #257656;
+                                background-color: #0b231b;
+                                transform: perspective(1, 1);
                             }
 
-                            &:last-child {
-                                span {
-                                    display: none;
-                                }
+                            a {
+                                display: block;
+                                height: 100%;
                             }
                         }
                     }
                 }
 
                 .details {
-                    margin-bottom: 1em;
-                }
+                    transition: all .3s;
 
-                details {
-                    border: 1px solid var(--bdr);
-                    padding-block: 0.5em;
-                    padding-left: 1em;
-
-                    &[open] summary {
-                        cursor: pointer;
-                        padding-bottom: 0.5em;
-                    }
-
-                    summary {
-                        cursor: pointer;
-                        font-weight: 800;
-                        padding-right: 1em;
-                        padding-bottom: 0.25em;
-
-                        &:marker {
-                            color: var(--bg);
-                        }
+                    .jenis-apps {
+                        line-height: 4;
+                        font-size: 3em;
+                        text-align: center;
+                        font-weight: 600;
+                        filter: drop-shadow(0 1px 10px #000);
+                        transition: all .3s;
                     }
 
                     details {
-                        padding-left: 1em;
-                        padding-bottom: 0;
-                        border-right: 0;
-                        background-color: var(--abg);
-                        padding-bottom: 0.25em;
-                        margin-bottom: .5em;
-                        color: var(--atx);
+                        transition: all .5s ease;
+                        margin-inline: 2em;
+                        border-radius: .45em;
+                        line-height: 2.5;
+                        margin-bottom: 1em;
+                        background-color: #0b231b99;
+                        box-shadow: inset 0 0 10px #163e30;
+                        border: #0b231b55 1px solid;
 
                         &:hover {
-                            background-color: var(--bg);
-                            color: var(--txt);
+                            background-color: #222;
+                            box-shadow: #163e30 0 0 .5em;
+                        }
+
+                        summary {
+                            transition: all .5s ease;
+                            cursor: pointer;
+                            list-style: none;
+                            padding-left: 1em;
                         }
 
                         &[open] {
-                            background-color: var(--bg);
-                            color: var(--txt);
-                        }
+                            background-color: #222;
+                            box-shadow: 0 0 1em inset #151515;
+                            padding-top: .5em;
+                            text-align: center;
 
-                        main {
-                            padding-right: 2em;
-                            display: flex;
-                            flex-wrap: wrap;
-                            justify-content: space-evenly;
-
-                            article {
-                                padding-left: 1em;
-                                padding-bottom: 1em;
-                                text-align: center;
+                            summary {
+                                font-size: 1.5em;
+                                font-weight: 800;
+                                filter: drop-shadow(0 7px 3px #000);
                             }
                         }
 
+                        main {
+                            padding-inline: 2em;
+                            padding-bottom: 1em;
+                            display: flex;
+                            justify-content: space-evenly;
+                            flex-wrap: wrap;
+                            gap: 1.5em;
+
+                            article {
+
+                                h5 {
+                                    text-decoration: underline;
+                                    text-underline-offset: .45em;
+                                    text-decoration-color: #163e30;
+                                    text-decoration-thickness: 2.25px;
+                                    text-transform: uppercase;
+                                    filter: drop-shadow(0 1px 5px #000);
+                                }
+
+                                p {
+                                    line-height: 1.5em;
+
+                                    b {
+                                        color: #257656;
+                                        filter: drop-shadow(0 1px 1px #000);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-
-        @layer text {
-            h1 {
-                text-align: center;
-                text-transform: uppercase;
-            }
-
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                text-transform: uppercase;
-            }
-
-            h5 {
-                text-decoration: underline;
-                text-underline-offset: 0.3em;
-                text-decoration-color: #ccc;
-                -moz-text-decoration-color: #ccc;
-                font-weight: 800;
-            }
-
-            p {
-                b {
-                    color: #36936c;
-                    font-weight: 800;
-                }
-            }
-        }
-
-        @layer widget {
-            #theme-toggle {
-                position: fixed;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 1em;
-                flex-direction: column;
-                background-color: var(--abg);
-                color: var(--atx);
-                padding: .5em;
-                bottom: 5em;
-                right: 2em;
-                border: 1px solid var(--bdr);
-                border-radius: .35em;
-                box-shadow: 0 0 10px var(--shd);
-
-                label {
-                    cursor: pointer;
-                    display: block;
-                }
-
-                input {
-                    display: none;
-                }
-            }
-
-            .back-top {
-                position: fixed;
-                bottom: 2em;
-                right: 2em;
-                background-color: var(--abg);
-                color: var(--atx);
-                width: 2em;
-                height: 2em;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: 0.35em;
-                -webkit-bdr-radius: 0.35em;
-                -moz-bdr-radius: 0.35em;
-                -ms-bdr-radius: 0.35em;
-                -o-bdr-radius: 0.35em;
-                border: 1px solid var(--bdr);
-                box-shadow: 0 0 10px var(--shd);
-
-                a {
-                    padding-top: 0.15em;
-                    color: var(--atx);
-                }
-            }
-        }
-
-        .details>* {
-            border-radius: 0.3em;
-            -webkit-bdr-radius: 0.3em;
-            -moz-bdr-radius: 0.3em;
-            -ms-bdr-radius: 0.3em;
-            -o-bdr-radius: 0.3em;
-            transition: all .3s;
-        }
-
-        details>* {
-            transition: all 0.3s linear;
-            -webkit-transition: all 0.3s linear;
-            -moz-transition: all 0.3s linear;
-            -ms-transition: all 0.3s linear;
-            -o-transition: all 0.3s linear;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--btx);
-        }
     </style>
-    <title>Pricelist</title>
 </head>
 
 <body>
-    <div id="top"></div>
-    <div class="back-top">
-        <a href="#top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-    </div>
-    <div id="theme-toggle">
-        <label><input name="color-scheme" type="radio" value="light"><i class="fas fa-sun"></i></label>
-        <label><input name="color-scheme" type="radio" value="dark"><i class="fas fa-moon"></i></label>
-    </div>
-
-
     <div id="app">
-        <h1>Pricelist</h1>
-        <p id="desc">by Zalan Store</p>
+        <h1>{{ mess }}</h1>
 
+        <!-- i links -->
         <nav>
-            <ul>
-                <li>Apps <span class="pipe">|</span></li>
-                <li>
-                    <a href="#">
-                        Games
-                    </a><span class="pipe">|</span>
-                </li>
-            </ul>
+            <div class="nav">
+                <router-link to="/">Home</router-link>
+                <router-link to="/apps">Apps</router-link>
+                <router-link to="/games">Games</router-link>
+            </div>
         </nav>
 
-        <div class="details">
-            <details>
-                <summary>Stream Apps</summary>
-                <details name="stream">
+        <!-- contenitore per il HTML -->
+        <router-view></router-view>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-router@3.0.2/dist/vue-router.js"></script>
+
+        <script>
+
+            const Home = {
+                template: `
+                <div class="homepage">
+                    <h2>Selamat datang</h2>
+                    <p>di <b>Zalan Store Pricelist App</b></p><br>
+                    <p>Kami menyediakan pembelian lewat WhatsApp saja yaa kak, ini hanya web pricelist</p>    
+                </div>
+                `
+            };
+            const Apps = {
+                template: `
+                <div class="subnav">
+                    <ul>
+                        <li><router-link to="/stream-apps">Stream Apps</router-link></li>
+                        <li><router-link to="/music-apps">Music Apps</router-link></li>
+                    </ul>
+                </div>
+                `
+            };
+            const Games = {
+                template: `
+            <div class="subnav">
+                <ul>
+                    <li><router-link  to="/mole">Mobile Legends</router-link></li>
+                    <li><router-link  to="/genshin">Genshin Impact</router-link></li>
+                </ul>
+            </div>
+            `
+            };
+            const StreamApps = {
+                template: `
+            <div class="list-apps">
+                <div class="back-btn">
+                    <span class="back"></span>
+                    <a @click="$router.go(-1)">
+                        Back
+                    </a>
+                </div>
+            <div class="details">
+                <div class="jenis-apps">Stream Apps</div>
+                <details name="nama-app">
                     <summary>Amazon Prime</summary>
                     <main>
                         <article>
@@ -387,7 +368,7 @@
                         </article>
                     </main>
                 </details>
-                <details name="stream">
+                <details name="nama-app">
                     <summary>APPLE TV+</summary>
                     <main>
                         <article>
@@ -406,7 +387,7 @@
                         </article>
                     </main>
                 </details>
-                <details name="stream">
+                <details name="nama-app">
                     <summary>BSTATION</summary>
                     <main>
                         <article>
@@ -424,7 +405,7 @@
                         </article>
                     </main>
                 </details>
-                <details name="stream">
+                <details name="nama-app">
                     <summary>CATCHPLAY</summary>
                     <main>
                         <article>
@@ -434,7 +415,7 @@
                         </article>
                     </main>
                 </details>
-                <details name="stream">
+                <details name="nama-app">
                     <summary>CRUNCHYROLL</summary>
                     <main>
                         <article>
@@ -444,7 +425,7 @@
                         </article>
                     </main>
                 </details>
-                <details name="stream">
+                <details name="nama-app">
                     <summary>DISNEY+</summary>
                     <main>
                         <article>
@@ -482,7 +463,7 @@
                         </article>
                     </main>
                 </details>
-                <details name="stream">
+                <details name="nama-app">
                     <summary>DRAKOR.ID</summary>
                     <main>
                         <article>
@@ -492,74 +473,59 @@
                         </article>
                     </main>
                 </details>
-            </details>
+                </div>
         </div>
-        <div class="details">
-            <details>
-                <summary>Music Apps</summary>
-                <details name="music">
-                    <summary>Apple Music</summary>
-                    <main>
-                        <article>
-                            <h5>GIFT CODE</h5>
-                            <p>12 bulan <b>30K</b></p>
-                        </article>
-                        <article>
-                            <h5>IMESS</h5>
-                            <p>1 bulan <b>23K</b></p>
-                            <p>2 bulan <b>30K</b></p>
-                            <p>3 bulan <b>38K</b></p>
-                            <p>4 bulan <b>43K</b></p>
-                        </article>
-                    </main>
-                </details>
-                <details name="music">
-                    <summary>SPOTIFY</summary>
-                    <main>
-                        <article>
-                            <h5>INDPLAN REPLACE</h5>
-                            <p>1 bulan <b>20K</b></p>
-                            <p>2 bulan <b>30K</b></p>
-                            <p>3 bulan <b>40K</b></p>
-                        </article>
-                        <article>
-                            <h5>INDPLAN NO REPLACE</h5>
-                            <p>1 bulan <b>30K</b></p>
-                            <p>2 bulan <b>45K</b></p>
-                            <p>3 bulan <b>60K</b></p>
-                        </article>
-                        <article>
-                            <h5>FAMPLAN REPLACE</h5>
-                            <p>1 bulan <b>15K</b></p>
-                            <p>2 bulan <b>20K</b></p>
-                            <p>3 bulan <b>30K</b></p>
-                        </article>
-                        <article>
-                            <h5>FAMPLAN LEGAL PAID INDO</h5>
-                            <p>1 bulan <b>20K</b></p>
-                            <p>2 bulan <b>30K</b></p>
-                        </article>
-                    </main>
-                </details>
-                <details name="music">
-                    <summary>TIKTOK MUSIC</summary>
-                    <main>
-                        <article>
-                            <h5>FAMILY PLAN</h5>
-                            <p>1 bulan <b>12K</b></p>
-                            <p>2 bulan <b>20K</b></p>
-                            <p>3 bulan <b>25K</b></p>
-                        </article>
-                        <article>
-                            <h5>INDIVIDUAL PLAN</h5>
-                            <p>1 bulan <b>18K</b></p>
-                        </article>
-                    </main>
-                </details>
-            </details>
-        </div>
-    </div>
+            `
+            }
+            const Mole = {
+                template: `
+                <div class="list-apps">
+                    <div class="back-btn">
+                        <span class="back"></span>
+                        <a @click="$router.go(-1)">
+                            Back
+                        </a>
+                    </div>
+                    <div class="details">
+                        <div class="jenis-apps">Mobile Legends</div>
+                            <details name="nama-app" open>
+                                <summary>Pricelist</summary>
+                                <main>
+                                    <article>
+                                        <h5>Diamond [ DM ]</h5>
+                                        <p>59 DM <b>20K</b></p>
+                                    </article>
+                                    <article>
+                                        <h5>PRIVATE</h5>
+                                        <p>1 bulan <b>30K</b></p>
+                                    </article>
+                                </main>
+                            </details>
+                        </div>
+                    </div>
+                `
+            }
 
+            const routes = [
+                { path: "/", component: Home },
+                { path: "/apps", component: Apps },
+                { path: "/games", component: Games },
+                { path: "/stream-apps", component: StreamApps },
+                { path: "/mole", component: Mole }
+            ];
+
+            const router = new VueRouter({
+                routes // short for `routes: routes`
+            });
+
+            const vm = new Vue({
+                router,
+                el: "#app",
+                data: {
+                    mess: "Pricelist"
+                }
+            }).$mount("#app");
+        </script>
 </body>
 
 </html>
