@@ -92,6 +92,10 @@
             /* Internet Explorer 10+ */
             scrollbar-width: none;
             /* Firefox */
+  transition: all .8s cubic-bezier(0.54, 0.35, 0.29, 0.99);
+  -webkit-transition: all .8s cubic-bezier(0.54, 0.35, 0.29, 0.99);
+  -moz-transition: all .8s cubic-bezier(0.54, 0.35, 0.29, 0.99);
+  -o-transition: all .8s cubic-bezier(0.54, 0.35, 0.29, 0.99); 
 
             &::-webkit-scrollbar {
                 display: none;
@@ -211,11 +215,28 @@
 
                     .jenis-apps {
                         line-height: 4;
-                        font-size: 3em;
-                        text-align: center;
-                        font-weight: 600;
-                        filter: drop-shadow(0 1px 10px #000);
                         transition: all .3s;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 2em;
+                        box-shadow: inset 0 0 1em 0 #222;
+                        border-radius: 1em;
+                        
+                        img {
+                            border-radius: 1em;
+                            width: 435px;
+                            z-index: -5;
+                        }
+
+                        .judul-apps {
+                            position: absolute;
+                            font-size: 3em;
+                            font-weight: 900;
+                            filter: drop-shadow(0 0px 5px #fff);
+                            -webkit-text-fill-color: #fff;
+                            -webkit-text-stroke: 1px #888;
+                        }
                     }
 
                     details {
@@ -250,6 +271,7 @@
                                 font-size: 1.5em;
                                 font-weight: 800;
                                 filter: drop-shadow(0 7px 3px #000);
+                                padding-left: 0;
                             }
                         }
 
@@ -350,7 +372,7 @@
                 </div>
             <div class="details">
                 <div class="jenis-apps">Stream Apps</div>
-                <details name="nama-app">
+                <details name="nama-app" open>
                     <summary>Amazon Prime</summary>
                     <main>
                         <article>
@@ -487,7 +509,12 @@
                         </a>
                     </div>
                     <div class="details">
-                        <div class="jenis-apps">Mobile Legends</div>
+                        <div class="jenis-apps">
+                            <div class="judul-apps">
+                                Mobile Legends
+                            </div>
+                            <img src="https://news.codashop.com/id/wp-content/uploads/sites/4/2023/05/Mobile-Legends-Best-Settings.jpg"></img>
+                        </div>
                             <details name="nama-app" open>
                                 <summary>Pricelist</summary>
                                 <main>
@@ -503,6 +530,42 @@
                             </details>
                         </div>
                     </div>
+                </div>
+                `
+            };
+            const Genshin = {
+                template: `
+                <div class="list-apps">
+                    <div class="back-btn">
+                        <span class="back"></span>
+                        <a @click="$router.go(-1)">
+                            Back
+                        </a>
+                    </div>
+                    <div class="details">
+                        <div class="jenis-apps">
+                            <div class="judul-apps">
+                                Genshin Impact
+                                </div>
+                                <img src="https://img.merahputih.com/media/b7/15/bc/b715bc7951c3bb0d708313243d69a524.jpg">
+                            </img>
+                        </div>
+                            <details name="nama-app" open>
+                                <summary>Pricelist</summary>
+                                <main>
+                                    <article>
+                                        <h5>Cyrstal</h5>
+                                        <p>1 Crystal <b>20K</b></p>
+                                    </article>
+                                    <article>
+                                        <h5>Blessing Welkin</h5>
+                                        <p>1x Welkin <b>80K</b></p>
+                                    </article>
+                                </main>
+                            </details>
+                        </div>
+                    </div>
+                </div>
                 `
             }
 
@@ -511,7 +574,8 @@
                 { path: "/apps", component: Apps },
                 { path: "/games", component: Games },
                 { path: "/stream-apps", component: StreamApps },
-                { path: "/mole", component: Mole }
+                { path: "/mole", component: Mole },
+                { path: "/genshin", component: Genshin }
             ];
 
             const router = new VueRouter({
